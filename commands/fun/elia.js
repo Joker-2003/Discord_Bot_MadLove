@@ -1,6 +1,6 @@
 module.exports ={
     name: 'elia',
-    description: 'I dont fucking know.. its elia lmao',
+    description: 'I  fucking know.. its elia lmao',
     usage: 'its  a secret',
     cooldown:'0.69',
     async execute(message, args){
