@@ -3,4 +3,4 @@ module.exports = function (c) {
     _ar.shift();
     var r = _ar.join(" ");
     return r;
-};
+}
