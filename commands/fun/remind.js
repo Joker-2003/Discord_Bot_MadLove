@@ -10,7 +10,7 @@ module.exports = {
     async execute (message,args){
         const time = args[0];
         const reason = args.slice(1).join(' ');
-        console.log(db.table);
+        //console.log(db.table);
         if (!time){
             return message.channel.send({
                 embed:{ 

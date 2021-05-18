@@ -1,9 +1,10 @@
 module.exports ={
     name: 'elia',
-    description: 'I dont fucking know.. its elia lmao',
+    description: 'I don\'t fucking know.. its elia',
     usage: 'its  a secret',
     cooldown:'0.69',
     async execute(message, args){
+        if (message.author.username =='Jøker' || message.author.username == 'Robin2712' || message.author.username == 'Elia in Timeout'){
         const Discord = require('discord.js');
         const Canvas = require('canvas');
         const canvas = new Canvas.createCanvas(750,500);
@@ -17,6 +18,11 @@ module.exports ={
         ctx.rotate(30*Math.PI/180);
         const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'elia.png');
         message.channel.send(attachment);
-        
+        } 
+        else{
+            message.channel.send({embed:{ 
+                description: 'Back off Dude!! You can\'t use this exclusive command'
+            }})
+        }
     }
 }

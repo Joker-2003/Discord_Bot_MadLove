@@ -15,6 +15,8 @@ module.exports = {
     description : 'to delete messages.. ',
     usage : ' <no. of messages>',
      execute (message,args){
+        if (message.member.hasPermission("ADMISNISTRATOR"))
+        {
         try {
             
        
@@ -35,5 +37,11 @@ module.exports = {
             message.send.channel("why so serious.. something went wrong. Try again");
     }
     }
+else{
+    message.send.channel({ embed:
+    {
+        description:'You don\'t have admin permission to clear chats',
+    }})
+}}
 
 };

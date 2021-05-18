@@ -1,3 +1,4 @@
+const db  = require('quick.db');
 module.exports={
     name: 'weekly',
     description : 'shows weekly stats',
@@ -5,14 +6,10 @@ module.exports={
     async execute(msg,args) {
         const snekfetch = require("snekfetch");
         const Discord = require('discord.js');
-        if (!args.length){
-            msg.reply("Please send your last fm name along with the command.. ``!fm <lastfm name>``");
-            return;
-        }
+        const username = db.fetch('fm.'+msg.author.id) ;
+        console.log(username);
        try {
         
-        
-        username = args[0];
         const { api_key, secret } = require('../../config.json');
         class album {
             constructor(album) {
@@ -35,8 +32,8 @@ module.exports={
         //INPUTS FORMAT: !weekly 3x3 90
         let width = msg.content.match(/\d+(?=x)/) ? msg.content.match(/\d+(?=x)/)[0] : 3;
         let height = msg.content.match(/(?<=x)\d+/) ?  msg.content.match(/(?<=x)\d+/)[0] : 3;
-        if (args.length >1){
-            timequery = args[1].replace(/[0-9]x[0-9]/g, "").trim();
+        if (args.length >0){
+            timequery = args[0].replace(/[0-9]x[0-9]/g, "").trim();
         }
         else{
             timequery =  "7 days";
@@ -125,7 +122,16 @@ module.exports={
 
         }
         const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'chart.png');
-        msg.channel.send(attachment);
+        
+        const embed1 = {
+                color: 'RANDOM',
+                description: `${width}x${height}, ${date}`, 
+                footer: { text: username},
+                image : {url : 'attachment://chart.png'}
+        //     .setDescription(`${width}x${height}, ${date}`)
+        //     .setFooter(username);
+        }
+        msg.channel.send( {files : [attachment] , embed : embed1}  );
         
         // let embed = new Discord.MessageEmbed()
             

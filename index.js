@@ -94,7 +94,7 @@ client.on("ready", () =>{
     client.user.setPresence({
         status: "online",  //You can show online, idle....
         activity: {
-            name: "Twenty Øne Piløts" ,  //The message shown
+            name: "Jøker's Orders" ,  //The message shown
             type: "LISTENING" //PLAYING: WATCHING: LISTENING: STREAMING:
         }
     });

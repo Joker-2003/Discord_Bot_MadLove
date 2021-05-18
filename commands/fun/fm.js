@@ -1,3 +1,4 @@
+const db  = require('quick.db');
 module.exports={
     name: 'fm',
     description : 'shows what u r playing',
@@ -5,14 +6,11 @@ module.exports={
     async execute(msg,args) {
         const snekfetch = require("snekfetch");
         const Discord = require('discord.js');
-        if (!args.length){
-            msg.reply("Please send your last fm name along with the command.. ``!fm <lastfm name>``");
-            return;
-        }
+        
         try {
             
         
-        username = args[0];
+        const username =  db.fetch('fm.' + msg.author.id) ;
         const { api_key, secret } = require('../../config.json');
         let url = `http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${username}&api_key=${api_key}&format=json`;
             // console.log(url, /URL/)
@@ -54,7 +52,7 @@ module.exports={
             embed.setAuthor(total + " total scrobbles", "http://icons.iconarchive.com/icons/sicons/flat-shadow-social/512/lastfm-icon.png", `https://www.last.fm/user/${username}`);
              msg.channel.send(embed);
             } catch (error) {
-                msg.channel.send('enter valid username');
+                msg.channel.send({ embed:{ description:'Set lastfm first.. use ``!setfm <LastFM username>``'}});
             }
     }
 
