@@ -1,6 +1,6 @@
 module.exports={
     name :'roast',
-    description :'Roasts Elia',
+    description :'Roasts poseidon',
     usage : ' ',
     cooldown : '2',
     execute (message,args){
